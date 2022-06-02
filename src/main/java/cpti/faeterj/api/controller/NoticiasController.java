@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +38,31 @@ public class NoticiasController {
 		return ResponseEntity.ok(obj);
 	}
 	
+	@GetMapping("/{id}")
+	public ResponseEntity<?>  ProcurarNoticiaPorId(@PathVariable Long id) {
+		
+		Noticias obj = service.FindByIdObj(id);
+		return ResponseEntity.ok(obj);
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@PostMapping()
 	public ResponseEntity<?> PublicarNotica(@RequestBody Noticias obj ) { //Vai receber uma req com um json no corpo e converte para um obj
 	
@@ -46,9 +73,18 @@ public class NoticiasController {
 		return ResponseEntity.created(uri).build();
 	}
 	
-	@DeleteMapping
-	public ResponseEntity<?> DeletarNoticia() {
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> DeletarNoticia(@PathVariable Long id  ) {
 		
+			service.DeleteObj(id);
+			return ResponseEntity.noContent().build();
+	}
+	
+	@PutMapping("/{id}")
+	public void AtualizarNoticia(@PathVariable Long id, @RequestBody Noticias obj) {
+		
+		obj.setId(id);
+		service.UpdateObj(obj);
 		
 	}
 	
