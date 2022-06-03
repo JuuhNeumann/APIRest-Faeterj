@@ -1,5 +1,8 @@
 package cpti.faeterj.api.entity;
 
+import java.util.Objects;
+
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,17 +14,17 @@ public class Noticias {
 	@Id //define a chave primaria
 	@GeneratedValue(strategy = GenerationType.IDENTITY)  //auto incrementavel
 	private Long id;
-	private String img;
+	private String imgNoticias;
 	private String titulo;
 	private String categoria;
 	private String conteudo;
 	private String data;
-	
-	public Noticias () {
+
+	public Noticias() {
 	}
 	
-	public Noticias(String img, String titulo, String categoria, String conteudo, String data) {
-		this.img = img;
+	public Noticias(String imgNoticias, String titulo, String categoria, String conteudo, String data) {
+		this.imgNoticias = imgNoticias;
 		this.titulo = titulo;
 		this.categoria = categoria;
 		this.conteudo = conteudo;
@@ -36,12 +39,12 @@ public class Noticias {
 		this.id = id;
 	}
 
-	public String getImg() {
-		return img;
+	public String getImgNoticias() {
+		return imgNoticias;
 	}
 
-	public void setImg(String img) {
-		this.img = img;
+	public void setImgNoticias(String imgNoticias) {
+		this.imgNoticias = imgNoticias;
 	}
 
 	public String getTitulo() {
@@ -75,6 +78,27 @@ public class Noticias {
 	public void setData(String data) {
 		this.data = data;
 	}
-	
-	
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Noticias other = (Noticias) obj;
+		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public String toString() {
+		return "Noticias [id=" + id + ", imgNoticias=" + imgNoticias + ", titulo=" + titulo + ", categoria=" + categoria
+				+ ", conteudo=" + conteudo + ", data=" + data + "]";
+	}
 }

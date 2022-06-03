@@ -1,7 +1,6 @@
 package cpti.faeterj.api.controller;
 
 import java.net.URI;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,58 +15,51 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import cpti.faeterj.api.entity.Noticias;
-import cpti.faeterj.api.services.NoticiasService;
+import cpti.faeterj.api.dto.AlunoDTO;
+import cpti.faeterj.api.entity.Aluno;
+import cpti.faeterj.api.services.AlunoService;
 
 @RestController
-@RequestMapping("/noticias")
-public class NoticiasController {
+@RequestMapping("/aluno")
+public class AlunoController {
 
 	@Autowired
-	NoticiasService service;
+	AlunoService service;
 
 	
 	//Especifica que o seu metodo é um tipo de requisição get
 	@GetMapping()
-	public 	ResponseEntity<?> Noticias() {
-	
-		List<Noticias> obj = service.findAllObj();
-		
+	public 	ResponseEntity<?> Aluno() {
+		List<Aluno> obj = service.findAllObj();
 		return ResponseEntity.ok(obj);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<?>  ProcurarNoticiaPorId(@PathVariable Long id) {
-		
-		Noticias obj = service.FindByIdObj(id);
+	public ResponseEntity<?>  ProcurarAlunoPorId(@PathVariable Long id) {
+		Aluno obj = service.FindByIdObj(id);
 		return ResponseEntity.ok(obj);
-
 	}
 	
-<<<<<<< HEAD
-
-=======
->>>>>>> e0910e06be55fee3d6bc1b1a0c4ed5bd82ee71f1
 	
 	@PostMapping()
-	public ResponseEntity<?> PublicarNotica(@RequestBody Noticias obj ) { //Vai receber uma req com um json no corpo e converte para um obj
-	
+	public ResponseEntity<?> PublicarAluno(@RequestBody AlunoDTO objDTO ) { //Vai receber uma req com um json no corpo e converte para um obj
+		Aluno obj = service.FromDTO(objDTO);
 		service.InserirObj(obj);	
-
-		//obtem o retorno da url do objeto
+		
+		//obtem o retorno da url do objeto0
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> DeletarNoticia(@PathVariable Long id  ) {
+	public ResponseEntity<?> DeletarAluno(@PathVariable Long id  ) {
 		
 			service.DeleteObj(id);
 			return ResponseEntity.noContent().build();
 	}
 	
 	@PutMapping("/{id}")
-	public void AtualizarNoticia(@PathVariable Long id, @RequestBody Noticias obj) {
+	public void AtualizarAluno(@PathVariable Long id, @RequestBody Aluno obj) {
 		
 		obj.setId(id);
 		service.UpdateObj(obj);

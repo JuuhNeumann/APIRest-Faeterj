@@ -8,20 +8,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class GradeMateria {
-	
-	@Id
+public class Post {
+
+	@Id //define a chave primaria
 	@GeneratedValue(strategy = GenerationType.IDENTITY)  //auto incrementavel
 	private Long id;
-	private String imgGrade;
-	private String imgCalendario;
+	private String imgPost;
+	private String conteudo;
 	
-	public GradeMateria() {
+	public Post() {
 	}
 	
-	public GradeMateria(String imgGrade, String imgCalendario) {
-		this.imgGrade = imgGrade;
-		this.setImgCalendario(imgCalendario);
+	public Post(String imgPost, String conteudo) {
+		this.imgPost = imgPost;
+		this.conteudo = conteudo;
 	}
 
 	public Long getId() {
@@ -32,21 +32,21 @@ public class GradeMateria {
 		this.id = id;
 	}
 
-	public String getImgGrade() {
-		return imgGrade;
+	public String getImgPost() {
+		return imgPost;
 	}
 
-	public void setImgGrade(String imgGrade) {
-		this.imgGrade = imgGrade;
-	}
-	public String getImgCalendario() {
-		return imgCalendario;
+	public void setImgPost(String imgPost) {
+		this.imgPost = imgPost;
 	}
 
-	public void setImgCalendario(String imgCalendario) {
-		this.imgCalendario = imgCalendario;
+	public String getConteudo() {
+		return conteudo;
 	}
-	
+
+	public void setConteudo(String conteudo) {
+		this.conteudo = conteudo;
+	}
 
 	@Override
 	public int hashCode() {
@@ -61,13 +61,13 @@ public class GradeMateria {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		GradeMateria other = (GradeMateria) obj;
+		Post other = (Post) obj;
 		return Objects.equals(id, other.id);
 	}
 
 	@Override
 	public String toString() {
-		return "GradeMateria [id=" + id + ", imgGrade=" + imgGrade + ", imgCalendario=" + imgCalendario + "]";
+		return "Post [id=" + id + ", imgPost=" + imgPost + ", conteudo=" + conteudo + "]";
 	}
-
+	
 }
