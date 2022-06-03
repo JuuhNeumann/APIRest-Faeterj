@@ -13,13 +13,15 @@ public class GradeMateria {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)  //auto incrementavel
 	private Long id;
-	private String img;
+	private String imgGrade;
+	private String imgCalendario;
 	
 	public GradeMateria() {
 	}
 	
-	public GradeMateria(String img) {
-		this.img = img;
+	public GradeMateria(String imgGrade, String imgCalendario) {
+		this.imgGrade = imgGrade;
+		this.setImgCalendario(imgCalendario);
 	}
 
 	public Long getId() {
@@ -30,13 +32,21 @@ public class GradeMateria {
 		this.id = id;
 	}
 
-	public String getImg() {
-		return img;
+	public String getImgGrade() {
+		return imgGrade;
 	}
 
-	public void setImg(String img) {
-		this.img = img;
+	public void setImgGrade(String img) {
+		this.imgGrade = imgGrade;
 	}
+	public String getImgCalendario() {
+		return imgCalendario;
+	}
+
+	public void setImgCalendario(String imgCalendario) {
+		this.imgCalendario = imgCalendario;
+	}
+	
 
 	@Override
 	public int hashCode() {
@@ -57,7 +67,7 @@ public class GradeMateria {
 
 	@Override
 	public String toString() {
-		return "GradeMateria [id=" + id + ", img=" + img + "]";
+		return "GradeMateria [id=" + id + ", imgGrade=" + imgGrade + ", imgCalendario=" + imgCalendario + "]";
 	}
-	
+
 }

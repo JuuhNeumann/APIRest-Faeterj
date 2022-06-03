@@ -20,6 +20,7 @@ public class Info {
 	private String endereco;
 	private String email;
 	
+	
 	public Info() {
 	}
 	
@@ -29,6 +30,63 @@ public class Info {
 		this.insta = insta;
 		this.face = face;
 		this.endereco = endereco;
+		this.email = email;
+	}
+	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public String getImgLogo() {
+		return imgLogo;
+	}
+
+	public void setImgLogo(String imgLogo) {
+		this.imgLogo = imgLogo;
+	}
+
+	public String getInsta() {
+		return insta;
+	}
+
+	public void setInsta(String insta) {
+		this.insta = insta;
+	}
+
+	public String getFace() {
+		return face;
+	}
+
+	public void setFace(String face) {
+		this.face = face;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
 		this.email = email;
 	}
 

@@ -13,14 +13,14 @@ public class Post {
 	@Id //define a chave primaria
 	@GeneratedValue(strategy = GenerationType.IDENTITY)  //auto incrementavel
 	private Long id;
-	private String img;
+	private String imgPost;
 	private String conteudo;
 	
 	public Post() {
 	}
 	
-	public Post(String img, String conteudo) {
-		this.img = img;
+	public Post(String imgPost, String conteudo) {
+		this.imgPost = imgPost;
 		this.conteudo = conteudo;
 	}
 
@@ -32,12 +32,12 @@ public class Post {
 		this.id = id;
 	}
 
-	public String getImg() {
-		return img;
+	public String getImgPost() {
+		return imgPost;
 	}
 
-	public void setImg(String img) {
-		this.img = img;
+	public void setImgPost(String imgPost) {
+		this.imgPost = imgPost;
 	}
 
 	public String getConteudo() {
@@ -67,7 +67,7 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return "Post [id=" + id + ", img=" + img + ", conteudo=" + conteudo + "]";
+		return "Post [id=" + id + ", imgPost=" + imgPost + ", conteudo=" + conteudo + "]";
 	}
 	
 }
