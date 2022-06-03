@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Disciplinas {
 	
@@ -18,24 +20,36 @@ public class Disciplinas {
 	private String disciplinas;
 	private String professor;
 	private String peso;
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_aluno")
 	private Aluno aluno;
 	@ManyToOne
 	@JoinColumn(name = "id_periodo")
 	private Periodo periodo;
+	private String turno;
 	
 	public Disciplinas() {
 	}
 	
-	public Disciplinas(String disciplinas, String professor, String peso, Aluno aluno, Periodo periodo) {
+	public Disciplinas(String disciplinas, String professor, String peso, Aluno aluno, Periodo periodo, String turno) {
 		this.disciplinas = disciplinas;
 		this.professor = professor;
 		this.peso = peso;
 		this.aluno = aluno;
 		this.periodo = periodo;
+		this.turno = turno;
 	}
 	
+	
+
+	public String getTurno() {
+		return turno;
+	}
+
+	public void setTurno(String turno) {
+		this.turno = turno;
+	}
 
 	public Periodo getPeriodo() {
 		return periodo;
@@ -105,7 +119,7 @@ public class Disciplinas {
 	@Override
 	public String toString() {
 		return "Disciplinas [id=" + id + ", disciplinas=" + disciplinas + ", professor=" + professor + ", peso=" + peso
-				+ ", aluno=" + aluno + ", periodo=" + periodo + "]";
+				+ ", aluno=" + aluno + ", periodo=" + periodo + ", turno=" + turno + "]";
 	}
 }
 	

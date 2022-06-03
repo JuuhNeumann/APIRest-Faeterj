@@ -36,7 +36,7 @@ public class GradeMateria {
 		return imgGrade;
 	}
 
-	public void setImgGrade(String img) {
+	public void setImgGrade(String imgGrade) {
 		this.imgGrade = imgGrade;
 	}
 	public String getImgCalendario() {

@@ -6,23 +6,23 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cpti.faeterj.api.entity.Noticias;
-import cpti.faeterj.api.entity.service.repository.NoticiasRepository;
+import cpti.faeterj.api.entity.Info;
+import cpti.faeterj.api.entity.service.repository.InfoRepository;
 import cpti.faeterj.api.exception.ObjectNotFoundException;
 
 @Service
-public class NoticiasService {
+public class InfoService {
 
 	//instancia obj
 	@Autowired
-	NoticiasRepository repo;
+	InfoRepository repo;
 	
-	public Noticias InserirObj(Noticias obj) {
+	public Info InserirObj(Info obj) {
 		obj = repo.save(obj);
 		return obj;
 	}
 	
-	public List<Noticias> findAllObj() {
+	public List<Info> findAllObj() {
 		
 		return repo.findAll();
 		
@@ -33,22 +33,20 @@ public class NoticiasService {
 		repo.deleteById(id);
 	}
 
-	public Noticias FindByIdObj(Long id) {
+	public Info FindByIdObj(Long id) {
 		
-		Optional<Noticias> obj  = repo.findById(id);
+		Optional<Info> obj  = repo.findById(id);
 		
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id));
 	}
 	
 	
-	public void UpdateObj(Noticias newObj) {
+	public void UpdateObj(Info newObj) {
 		
-		Noticias obj = FindByIdObj(newObj.getId());
+		Info obj = FindByIdObj(newObj.getId());
 		obj = newObj;
-		repo.save(obj);
-		
-		
+		repo.save(obj);		
 	}
-	
+
 }

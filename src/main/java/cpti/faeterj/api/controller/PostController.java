@@ -1,7 +1,6 @@
 package cpti.faeterj.api.controller;
 
 import java.net.URI;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,37 +15,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import cpti.faeterj.api.entity.Noticias;
-import cpti.faeterj.api.services.NoticiasService;
+import cpti.faeterj.api.entity.Post;
+import cpti.faeterj.api.services.PostService;
 
 @RestController
-@RequestMapping("/noticias")
-public class NoticiasController {
+@RequestMapping("/post")
+public class PostController {
 
 	@Autowired
-	NoticiasService service;
+	PostService service;
 
 	
 	//Especifica que o seu metodo é um tipo de requisição get
 	@GetMapping()
-	public 	ResponseEntity<?> Noticias() {
+	public 	ResponseEntity<?> Post() {
 	
-		List<Noticias> obj = service.findAllObj();
+		List<Post> obj = service.findAllObj();
 		
 		return ResponseEntity.ok(obj);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<?>  ProcurarNoticiaPorId(@PathVariable Long id) {
+	public ResponseEntity<?>  ProcurarPostPorId(@PathVariable Long id) {
 		
-		Noticias obj = service.FindByIdObj(id);
+		Post obj = service.FindByIdObj(id);
 		return ResponseEntity.ok(obj);
 
 	}
 	
 	
 	@PostMapping()
-	public ResponseEntity<?> PublicarNotica(@RequestBody Noticias obj ) { //Vai receber uma req com um json no corpo e converte para um obj
+	public ResponseEntity<?> PublicarPost(@RequestBody Post obj ) { //Vai receber uma req com um json no corpo e converte para um obj
 	
 		service.InserirObj(obj);	
 
@@ -56,14 +55,14 @@ public class NoticiasController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> DeletarNoticia(@PathVariable Long id  ) {
+	public ResponseEntity<?> DeletarPost(@PathVariable Long id  ) {
 		
 			service.DeleteObj(id);
 			return ResponseEntity.noContent().build();
 	}
 	
 	@PutMapping("/{id}")
-	public void AtualizarNoticia(@PathVariable Long id, @RequestBody Noticias obj) {
+	public void AtualizarPost(@PathVariable Long id, @RequestBody Post obj) {
 		
 		obj.setId(id);
 		service.UpdateObj(obj);
