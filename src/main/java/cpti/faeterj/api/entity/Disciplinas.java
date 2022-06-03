@@ -20,7 +20,7 @@ public class Disciplinas {
 	private String disciplinas;
 	private String professor;
 	private String peso;
-	@JsonIgnore
+	//@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_aluno")
 	private Aluno aluno;

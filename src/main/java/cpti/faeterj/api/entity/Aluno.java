@@ -1,5 +1,6 @@
 package cpti.faeterj.api.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -19,9 +20,15 @@ public class Aluno {
 	private String nome;
 	private String email;
 	@OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL)
-	private List<Disciplinas> disciplinas;
+	private List<Disciplinas> disciplinas = new ArrayList<>();
 	
 	public Aluno() {
+	}
+	
+	public Aluno(String nome, String email) {
+		super();
+		this.nome = nome;
+		this.email = email;
 	}
 	
 	public Aluno(String nome, String email, List<Disciplinas> disciplinas) {
