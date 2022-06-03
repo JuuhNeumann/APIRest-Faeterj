@@ -8,34 +8,28 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class GradeMateria {
-	
+public class Info {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)  //auto incrementavel
 	private Long id;
-	private String img;
+	private String tel;
+	private String imgLogo;
+	private String insta;
+	private String face;
+	private String endereco;
+	private String email;
 	
-	public GradeMateria() {
+	public Info() {
 	}
 	
-	public GradeMateria(String img) {
-		this.img = img;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getImg() {
-		return img;
-	}
-
-	public void setImg(String img) {
-		this.img = img;
+	public Info(String tel, String imgLogo, String insta, String face, String endereco, String email) {
+		this.tel = tel;
+		this.imgLogo = imgLogo;
+		this.insta = insta;
+		this.face = face;
+		this.endereco = endereco;
+		this.email = email;
 	}
 
 	@Override
@@ -51,13 +45,14 @@ public class GradeMateria {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		GradeMateria other = (GradeMateria) obj;
+		Info other = (Info) obj;
 		return Objects.equals(id, other.id);
 	}
 
 	@Override
 	public String toString() {
-		return "GradeMateria [id=" + id + ", img=" + img + "]";
+		return "Info [id=" + id + ", tel=" + tel + ", imgLogo=" + imgLogo + ", insta=" + insta + ", face=" + face
+				+ ", endereco=" + endereco + ", email=" + email + "]";
 	}
-	
+
 }

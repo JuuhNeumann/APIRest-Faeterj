@@ -1,5 +1,6 @@
 package cpti.faeterj.api.entity;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -8,18 +9,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class GradeMateria {
-	
-	@Id
+public class Periodo {
+
+	@Id //define a chave primaria
 	@GeneratedValue(strategy = GenerationType.IDENTITY)  //auto incrementavel
 	private Long id;
-	private String img;
+	private List<Disciplinas> disciplinas;
+	private String turno;
 	
-	public GradeMateria() {
+	public Periodo() {
 	}
 	
-	public GradeMateria(String img) {
-		this.img = img;
+	public Periodo(List<Disciplinas> materias, String turno) {
+		this.disciplinas = materias;
+		this.turno = turno;
 	}
 
 	public Long getId() {
@@ -30,12 +33,20 @@ public class GradeMateria {
 		this.id = id;
 	}
 
-	public String getImg() {
-		return img;
+	public List<Disciplinas> getMaterias() {
+		return disciplinas;
 	}
 
-	public void setImg(String img) {
-		this.img = img;
+	public void setMaterias(List<Disciplinas> materias) {
+		this.disciplinas = materias;
+	}
+
+	public String getTurno() {
+		return turno;
+	}
+
+	public void setTurno(String turno) {
+		this.turno = turno;
 	}
 
 	@Override
@@ -51,13 +62,14 @@ public class GradeMateria {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		GradeMateria other = (GradeMateria) obj;
+		Periodo other = (Periodo) obj;
 		return Objects.equals(id, other.id);
 	}
 
 	@Override
 	public String toString() {
-		return "GradeMateria [id=" + id + ", img=" + img + "]";
+		return "Periodo [id=" + id + ", materias=" + disciplinas + ", turno=" + turno + "]";
 	}
+	
 	
 }

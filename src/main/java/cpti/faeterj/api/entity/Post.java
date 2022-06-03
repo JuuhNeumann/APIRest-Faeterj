@@ -8,18 +8,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class GradeMateria {
-	
-	@Id
+public class Post {
+
+	@Id //define a chave primaria
 	@GeneratedValue(strategy = GenerationType.IDENTITY)  //auto incrementavel
 	private Long id;
 	private String img;
+	private String conteudo;
 	
-	public GradeMateria() {
+	public Post() {
 	}
 	
-	public GradeMateria(String img) {
+	public Post(String img, String conteudo) {
 		this.img = img;
+		this.conteudo = conteudo;
 	}
 
 	public Long getId() {
@@ -38,6 +40,14 @@ public class GradeMateria {
 		this.img = img;
 	}
 
+	public String getConteudo() {
+		return conteudo;
+	}
+
+	public void setConteudo(String conteudo) {
+		this.conteudo = conteudo;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -51,13 +61,13 @@ public class GradeMateria {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		GradeMateria other = (GradeMateria) obj;
+		Post other = (Post) obj;
 		return Objects.equals(id, other.id);
 	}
 
 	@Override
 	public String toString() {
-		return "GradeMateria [id=" + id + ", img=" + img + "]";
+		return "Post [id=" + id + ", img=" + img + ", conteudo=" + conteudo + "]";
 	}
 	
 }
