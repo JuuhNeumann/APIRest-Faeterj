@@ -49,7 +49,6 @@ public class NoticiasService {
 		obj = newObj;
 		repo.save(obj);
 		
-		
 	}
 	
 }
