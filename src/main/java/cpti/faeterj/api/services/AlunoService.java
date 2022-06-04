@@ -28,6 +28,7 @@ public class AlunoService {
 	@Transactional
 	public Aluno InserirObj(Aluno obj) {
 		obj = repo.save(obj);
+		repodisciplina.saveAll(obj.getDisciplinas());
 		return obj;
 	}
 	
@@ -58,14 +59,11 @@ public class AlunoService {
 		repo.save(obj);		
 	}
 
-	@Transactional
 	public Aluno FromDTO(AlunoDTO alunodto) {
-		List<Disciplinas> disciplina = new ArrayList<>();
 		Disciplinas obj = repodisciplina.findByDisciplinas(alunodto.getDisciplina());
-		disciplina.add(obj);
 		Aluno aluno = new Aluno(alunodto.getNome(), alunodto.getEmail());
-		obj.setAluno(aluno);
-		aluno.setDisciplinas(disciplina);
+		Disciplinas ojb2 = new Disciplinas(obj.getDisciplinas(), obj.getProfessor(), obj.getPeso(), aluno, obj.getPeriodo(), obj.getPeso());
+		aluno.getDisciplinas().add(ojb2);
 		
 		return aluno;
 	}

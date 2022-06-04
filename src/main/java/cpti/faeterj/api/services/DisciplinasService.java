@@ -49,4 +49,8 @@ public class DisciplinasService {
 		repo.save(obj);		
 	}
 
+	public Disciplinas findByDisciplinas(String disciplina) {
+			return repo.findByDisciplinas(disciplina);
+	}
+
 }
