@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import cpti.faeterj.api.dto.PeriodoDTO;
 import cpti.faeterj.api.entity.Periodo;
 import cpti.faeterj.api.services.PeriodoService;
 
@@ -43,12 +44,21 @@ public class PeriodoController {
 
 	}
 	
-	
 	@PostMapping()
-	public ResponseEntity<?> PublicarPeriodo(@RequestBody Periodo obj ) { //Vai receber uma req com um json no corpo e converte para um obj
-	
+	public ResponseEntity<?> PublicarPeriodo(@RequestBody PeriodoDTO objDTO) { //Vai receber uma req com um json no corpo e converte para um obj
+		Periodo obj = service.FromDTO(objDTO);
 		service.InserirObj(obj);	
 
+		//obtem o retorno da url do objeto
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+		return ResponseEntity.created(uri).build();
+	}
+	
+	@PostMapping("/adicionardisciplina")
+	public ResponseEntity<?> PublicarPeriodoDepois(@RequestBody PeriodoDTO objDTO) { //Vai receber uma req com um json no corpo e converte para um obj
+		Periodo obj = service.FromDTO(objDTO);
+		service.InserirObj(obj);	
+		
 		//obtem o retorno da url do objeto
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();

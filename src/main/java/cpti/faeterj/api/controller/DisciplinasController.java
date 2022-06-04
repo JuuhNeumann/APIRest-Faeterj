@@ -46,7 +46,7 @@ public class DisciplinasController {
 	
 	@PostMapping()
 	public ResponseEntity<?> PublicarDisciplinas(@RequestBody Disciplinas obj ) { //Vai receber uma req com um json no corpo e converte para um obj
-	
+		
 		service.InserirObj(obj);	
 
 		//obtem o retorno da url do objeto

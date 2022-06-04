@@ -26,7 +26,9 @@ public class Disciplinas {
 	private Aluno aluno;
 	@ManyToOne
 	@JoinColumn(name = "id_periodo")
+	@JsonIgnore
 	private Periodo periodo;
+	@JsonIgnore
 	private String turno;
 	
 	public Disciplinas() {

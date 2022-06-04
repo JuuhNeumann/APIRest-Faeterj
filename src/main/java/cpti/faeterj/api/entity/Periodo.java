@@ -1,5 +1,6 @@
 package cpti.faeterj.api.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,15 +18,17 @@ public class Periodo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)  //auto incrementavel
 	private Long id;
 	@OneToMany(mappedBy = "periodo", cascade = CascadeType.ALL)
-	private List<Disciplinas> disciplinas;
+	private List<Disciplinas> disciplinas = new ArrayList<>();
 	private String turno;
+	private String periodo;
 	
 	public Periodo() {
 	}
 	
-	public Periodo(List<Disciplinas> disciplinas, String turno) {
+	public Periodo(List<Disciplinas> disciplinas, String turno, String periodo) {
 		this.disciplinas = disciplinas;
 		this.turno = turno;
+		this.periodo = periodo;
 	}
 
 	public Long getId() {
@@ -52,6 +55,14 @@ public class Periodo {
 		this.turno = turno;
 	}
 
+	public String getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(String periodo) {
+		this.periodo = periodo;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -71,6 +82,6 @@ public class Periodo {
 
 	@Override
 	public String toString() {
-		return "Periodo [id=" + id + ", disciplinas=" + disciplinas + ", turno=" + turno + "]";
+		return "Periodo [id=" + id + ", disciplinas=" + disciplinas + ", turno=" + turno + ", periodo=" + periodo + "]";
 	}
 }
