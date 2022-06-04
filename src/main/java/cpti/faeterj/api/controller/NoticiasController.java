@@ -43,7 +43,7 @@ public class NoticiasController {
 		return ResponseEntity.ok(obj);
 
 	}
-	
+
 	
 	@PostMapping()
 	public ResponseEntity<?> PublicarNotica(@RequestBody Noticias obj ) { //Vai receber uma req com um json no corpo e converte para um obj
