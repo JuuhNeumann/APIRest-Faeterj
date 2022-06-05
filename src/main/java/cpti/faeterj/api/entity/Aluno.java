@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -19,10 +20,10 @@ public class Aluno {
 	private Long id;
 	private String nome;
 	private String email;
-	@OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "alunin")
 	private List<Disciplinas> disciplinas = new ArrayList<>();
 	
-	public Aluno() {
+	public Aluno() { 
 	}
 	
 	public Aluno(String nome, String email) {

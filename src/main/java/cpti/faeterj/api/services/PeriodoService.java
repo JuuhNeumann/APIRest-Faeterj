@@ -3,6 +3,8 @@ package cpti.faeterj.api.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +25,9 @@ public class PeriodoService {
 	@Autowired
 	DisciplinasRepository repodisciplina;
 	
+	@Transactional
 	public Periodo InserirObj(Periodo obj) {
-		obj = repo.saveAll(obj);
-		//repodisciplina.saveAll(obj.getDisciplinas());
+		obj = repo.save(obj);
 		return obj;
 	}
 	
@@ -63,7 +65,7 @@ public class PeriodoService {
 		
 		for (DisciplinasDTO x : objDTO.getDisciplinas()) {
 			Disciplinas disci = repodisciplina.findByDisciplinas(x.getNome());
-			Disciplinas disciplina = new Disciplinas(disci.getDisciplinas(), disci.getProfessor(), disci.getPeso(), disci.getAluno(), periodo, disci.getTurno());
+			Disciplinas disciplina = new Disciplinas(disci.getDisciplinas(), disci.getProfessor(), disci.getPeso(), periodo, disci.getTurno());
 			periodo.getDisciplinas().add(disciplina);
 		}
 		
@@ -77,7 +79,7 @@ public class PeriodoService {
 		
 		for (DisciplinasDTO x : objDTO.getDisciplinas()) {
 			Disciplinas disci = repodisciplina.findByDisciplinas(x.getNome());
-			Disciplinas disciplina = new Disciplinas(disci.getDisciplinas(), disci.getProfessor(), disci.getPeso(), disci.getAluno(), periodo, disci.getTurno());
+			Disciplinas disciplina = new Disciplinas(disci.getDisciplinas(), disci.getProfessor(), disci.getPeso(), periodo, disci.getTurno());
 			periodo.getDisciplinas().add(disciplina);
 		}
 		
