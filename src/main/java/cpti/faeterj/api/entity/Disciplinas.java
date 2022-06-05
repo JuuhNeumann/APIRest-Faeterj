@@ -25,6 +25,8 @@ public class Disciplinas {
 	private String disciplinas;
 	private String professor;
 	private String peso;
+	private String turno;
+	private String periodo;
 
 	
 	@JsonIgnore
@@ -34,15 +36,10 @@ public class Disciplinas {
 	  joinColumns = @JoinColumn(name = "student_id"), 
 	  inverseJoinColumns = @JoinColumn(name = "course_id"))
 	private List<Aluno> alunin = new ArrayList<>();
+
+
 	
 	
-	
-	@ManyToOne
-	@JoinColumn(name = "id_periodo")
-	@JsonIgnore
-	private Periodo periodo;
-	@JsonIgnore
-	private String turno;
 	
 	public Disciplinas() {
 	}
@@ -55,15 +52,23 @@ public class Disciplinas {
 		this.alunin = alunin;
 	}
 
-	public Disciplinas(String disciplinas, String professor, String peso, Periodo periodo, String turno) {
+	public Disciplinas(String disciplinas, String professor, String peso, String turno,String periodo) {
 		this.disciplinas = disciplinas;
 		this.professor = professor;
 		this.peso = peso;
-		this.periodo = periodo;
 		this.turno = turno;
+		this.periodo= periodo;
 	}
 	
 	
+
+	public String getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(String periodo) {
+		this.periodo = periodo;
+	}
 
 	public String getTurno() {
 		return turno;
@@ -73,13 +78,6 @@ public class Disciplinas {
 		this.turno = turno;
 	}
 
-	public Periodo getPeriodo() {
-		return periodo;
-	}
-
-	public void setPeriodo(Periodo periodo) {
-		this.periodo = periodo;
-	}
 
 
 	public Long getId() {
@@ -118,6 +116,8 @@ public class Disciplinas {
 	public int hashCode() {
 		return Objects.hash(id);
 	}
+
+	
 
 	@Override
 	public boolean equals(Object obj) {
