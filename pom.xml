@@ -14,8 +14,8 @@
 	<name>ApiRestFaterj</name>
 	<description>Workshop Spring Boot com MongoDB</description>
 	<properties>
-		<java.version>11</java.version>
-	</properties>
+    <java.version>8</java.version>
+</properties>
 	<dependencies>
 	<dependency>
 			<groupId>org.springframework.boot</groupId>
