@@ -17,16 +17,13 @@ public class Periodo {
 	@Id //define a chave primaria
 	@GeneratedValue(strategy = GenerationType.IDENTITY)  //auto incrementavel
 	private Long id;
-	@OneToMany(mappedBy = "periodo", cascade = CascadeType.ALL)
-	private List<Disciplinas> disciplinas = new ArrayList<>();
 	private String turno;
 	private String periodo;
 	
 	public Periodo() {
 	}
 	
-	public Periodo(List<Disciplinas> disciplinas, String turno, String periodo) {
-		this.disciplinas = disciplinas;
+	public Periodo( String turno, String periodo) {
 		this.turno = turno;
 		this.periodo = periodo;
 	}
@@ -39,13 +36,6 @@ public class Periodo {
 		this.id = id;
 	}
 
-	public List<Disciplinas> getDisciplinas() {
-		return disciplinas;
-	}
-
-	public void setDisciplinas(List<Disciplinas> disciplinas) {
-		this.disciplinas = disciplinas;
-	}
 
 	public String getTurno() {
 		return turno;
@@ -80,8 +70,4 @@ public class Periodo {
 		return Objects.equals(id, other.id);
 	}
 
-	@Override
-	public String toString() {
-		return "Periodo [id=" + id + ", disciplinas=" + disciplinas + ", turno=" + turno + ", periodo=" + periodo + "]";
-	}
 }

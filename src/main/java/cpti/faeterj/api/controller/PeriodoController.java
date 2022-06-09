@@ -30,53 +30,13 @@ public class PeriodoController {
 	//Especifica que o seu metodo é um tipo de requisição get
 	@GetMapping()
 	public 	ResponseEntity<?> Periodo() {
-	
-		List<Periodo> obj = service.findAllObj();
 		
+		List<PeriodoDTO> obj = service.findAllObj();
 		return ResponseEntity.ok(obj);
 	}
 	
-	@GetMapping("/{id}")
-	public ResponseEntity<?>  ProcurarPeriodoPorId(@PathVariable Long id) {
-		
-		Periodo obj = service.FindByIdObj(id);
-		return ResponseEntity.ok(obj);
 
-	}
 	
-	@PostMapping()
-	public ResponseEntity<?> PublicarPeriodo(@RequestBody PeriodoDTO objDTO) { //Vai receber uma req com um json no corpo e converte para um obj
-		Periodo obj = service.FromDTO(objDTO);
-		service.InserirObj(obj);	
 
-		//obtem o retorno da url do objeto
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-		return ResponseEntity.created(uri).build();
-	}
-	
-	@PostMapping("/adicionardisciplina")
-	public ResponseEntity<?> PublicarPeriodoDepois(@RequestBody PeriodoDTO objDTO) { //Vai receber uma req com um json no corpo e converte para um obj
-		Periodo obj = service.FromDTO(objDTO);
-		service.InserirObj(obj);	
-		
-		//obtem o retorno da url do objeto
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-		return ResponseEntity.created(uri).build();
-	}
-	
-	@DeleteMapping("/{id}")
-	public ResponseEntity<?> DeletarPeriodo(@PathVariable Long id  ) {
-		
-			service.DeleteObj(id);
-			return ResponseEntity.noContent().build();
-	}
-	
-	@PutMapping("/{id}")
-	public void AtualizarPeriodo(@PathVariable Long id, @RequestBody Periodo obj) {
-		
-		obj.setId(id);
-		service.UpdateObj(obj);
-		
-	}
 	
 }
