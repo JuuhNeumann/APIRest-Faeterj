@@ -24,7 +24,7 @@ public class PeriodoService {
 	DisciplinasRepository repodisciplina;
 	
 	public Periodo InserirObj(Periodo obj) {
-		obj = repo.saveAll(obj);
+		obj = repo.save(obj);
 		//repodisciplina.saveAll(obj.getDisciplinas());
 		return obj;
 	}
@@ -50,7 +50,6 @@ public class PeriodoService {
 	
 	
 	public void UpdateObj(Periodo newObj) {
-		
 		Periodo obj = FindByIdObj(newObj.getId());
 		obj = newObj;
 		repo.save(obj);		
