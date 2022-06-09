@@ -26,45 +26,6 @@ public class PeriodoService {
 	PeriodoRepository repo;
 	@Autowired
 	DisciplinasRepository repodisciplina;
-<<<<<<< HEAD
-	
-	public Periodo InserirObj(Periodo obj) {
-		obj = repo.save(obj);
-		//repodisciplina.saveAll(obj.getDisciplinas());
-		return obj;
-	}
-	
-	public List<Periodo> findAllObj() {
-		
-		return repo.findAll();
-		
-	}
-	
-	public void DeleteObj(long id) {
-		
-		repo.deleteById(id);
-	}
-
-	public Periodo FindByIdObj(Long id) {
-		
-		Optional<Periodo> obj  = repo.findById(id);
-		
-		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! Id: " + id));
-	}
-	
-	
-	public void UpdateObj(Periodo newObj) {
-		Periodo obj = FindByIdObj(newObj.getId());
-		obj = newObj;
-		repo.save(obj);		
-	}
-	
-	public Periodo FromDTO(PeriodoDTO objDTO) {
-		Periodo periodo = new Periodo();
-		periodo.setTurno(objDTO.getTurno());
-		periodo.setPeriodo(objDTO.getPeriodo());
-=======
 
 	public List<PeriodoDTO> findAllObj() {
 
@@ -78,7 +39,6 @@ public class PeriodoService {
 		PeriodoDTO periodo5 = new PeriodoDTO();
 
 		GradeDto gradeDTO = new GradeDto(null, null, null, null);
->>>>>>> 4b06571ba914deea1f8885bdc4154831ed9c7a38
 		
 		for (Disciplinas disciplina : list) {
 
