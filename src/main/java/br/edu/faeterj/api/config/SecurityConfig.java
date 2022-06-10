@@ -28,8 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private JWTUtil jwtUtil;
 
-	private static final String[] PUBLIC_MATCHERS = { "/swagger/**", "/categorias/**", "/produtos/**", "/pedidos/**",
-			"/clientes/**", "/disciplinas/**", "/periodo/**"
+	private static final String[] PUBLIC_MATCHERS = { "/swagger/**", "/categoria/**", "/aluno/**,\"/gradeMateria/**\",\"/info/**\",\"/periodo/**\",\"/noticias/**\",\"/post/**"
 
 	};
 
