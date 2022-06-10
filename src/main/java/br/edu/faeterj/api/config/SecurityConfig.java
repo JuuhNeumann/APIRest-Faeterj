@@ -28,11 +28,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private JWTUtil jwtUtil;
 
-	private static final String[] PUBLIC_MATCHERS = { "/swagger/**", "/categoria/**", "/aluno/**,\"/gradeMateria/**\",\"/info/**\",\"/periodo/**\",\"/noticias/**\",\"/post/**"
+	private static final String[] PUBLIC_MATCHERS = { "/swagger/**", "/aluno/**", "/info/**", "/noticias/**",
+			"/periodo/**", "/disciplina/**", "/gradeMateria/**"
 
 	};
 
-	private static final String[] PUBLIC_MATCHER_GET = { "/swagger **", "/produtos/**", "/pedidos/**", "/clientes/**",
+	private static final String[] PUBLIC_MATCHER_GET = { "/swagger **", "/produtos/**", "/disciplina/**", "/aluno/**",
 			"/gradeMateria/**","/info/**","/periodo/**","/noticias/**","/post/**"};
 
 	@Override
