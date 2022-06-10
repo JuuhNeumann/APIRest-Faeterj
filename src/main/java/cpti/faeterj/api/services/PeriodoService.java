@@ -24,15 +24,13 @@ public class PeriodoService {
 	DisciplinasRepository repodisciplina;
 	
 	public Periodo InserirObj(Periodo obj) {
-		obj = repo.saveAll(obj);
+		obj = repo.save(obj);
 		//repodisciplina.saveAll(obj.getDisciplinas());
 		return obj;
 	}
 	
 	public List<Periodo> findAllObj() {
-		
 		return repo.findAll();
-		
 	}
 	
 	public void DeleteObj(long id) {
