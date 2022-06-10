@@ -64,8 +64,7 @@ public class SwaggerConfigg {
 		return new ResponseMessageBuilder().code(201).message("Recurso criado").headersWithDescription(map).build();
 	}
 	
-	
-	
+		
 	//RETIRAR
 	
 	@Bean
