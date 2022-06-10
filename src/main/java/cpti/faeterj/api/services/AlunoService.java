@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cpti.faeterj.api.dto.AlunoDTO;
+import cpti.faeterj.api.dto.DisciplinasDTO;
 import cpti.faeterj.api.entity.Aluno;
 import cpti.faeterj.api.entity.Disciplinas;
 import cpti.faeterj.api.entity.service.repository.AlunoRepository;
@@ -24,10 +25,13 @@ public class AlunoService {
 	@Autowired
 	DisciplinasRepository repodisciplina;
 	
+	@Autowired
+	DisciplinasService serviceDisciplina;
+	
 	@Transactional
 	public Aluno InserirObj(Aluno obj) {
 		obj = repo.save(obj);
-		repodisciplina.saveAll(obj.getDisciplinas());
+		 repodisciplina.saveAll(obj.getDisciplinas());
 		return obj;
 	}
 	
@@ -59,10 +63,14 @@ public class AlunoService {
 	}
 
 	public Aluno FromDTO(AlunoDTO alunodto) {
-		Disciplinas obj = repodisciplina.findByDisciplinas(alunodto.getDisciplina());
+		
 		Aluno aluno = new Aluno(alunodto.getNome(), alunodto.getEmail());
-		Disciplinas ojb2 = new Disciplinas(obj.getDisciplinas(), obj.getProfessor(), obj.getPeso(), aluno, obj.getPeriodo(), obj.getPeso());
-		aluno.getDisciplinas().add(ojb2);
+
+		for (DisciplinasDTO x : alunodto.getDisciplinas()) {
+			Disciplinas obj = repodisciplina.findByDisciplinas(x.getNome());
+			obj.getAlunin().add(aluno);
+			aluno.getDisciplinas().add(obj);
+		}
 		
 		return aluno;
 	}

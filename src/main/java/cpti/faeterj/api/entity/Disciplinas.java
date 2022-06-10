@@ -1,12 +1,17 @@
 package cpti.faeterj.api.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -20,30 +25,50 @@ public class Disciplinas {
 	private String disciplinas;
 	private String professor;
 	private String peso;
-	@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name = "id_aluno")
-	private Aluno aluno;
-	@ManyToOne
-	@JoinColumn(name = "id_periodo")
-	@JsonIgnore
-	private Periodo periodo;
-	@JsonIgnore
 	private String turno;
+	private String periodo;
+
+	
+	@JsonIgnore
+	@ManyToMany(cascade=CascadeType.PERSIST)
+	@JoinTable(
+	  name = "course_like", 
+	  joinColumns = @JoinColumn(name = "student_id"), 
+	  inverseJoinColumns = @JoinColumn(name = "course_id"))
+	private List<Aluno> alunin = new ArrayList<>();
+
+
+	
+	
 	
 	public Disciplinas() {
 	}
 	
-	public Disciplinas(String disciplinas, String professor, String peso, Aluno aluno, Periodo periodo, String turno) {
+	public List<Aluno> getAlunin() {
+		return alunin;
+	}
+
+	public void setAlunin(List<Aluno> alunin) {
+		this.alunin = alunin;
+	}
+
+	public Disciplinas(String disciplinas, String professor, String peso, String turno,String periodo) {
 		this.disciplinas = disciplinas;
 		this.professor = professor;
 		this.peso = peso;
-		this.aluno = aluno;
-		this.periodo = periodo;
 		this.turno = turno;
+		this.periodo= periodo;
 	}
 	
 	
+
+	public String getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(String periodo) {
+		this.periodo = periodo;
+	}
 
 	public String getTurno() {
 		return turno;
@@ -53,21 +78,7 @@ public class Disciplinas {
 		this.turno = turno;
 	}
 
-	public Periodo getPeriodo() {
-		return periodo;
-	}
 
-	public void setPeriodo(Periodo periodo) {
-		this.periodo = periodo;
-	}
-
-	public Aluno getAluno() {
-		return aluno;
-	}
-
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
-	}
 
 	public Long getId() {
 		return id;
@@ -106,6 +117,8 @@ public class Disciplinas {
 		return Objects.hash(id);
 	}
 
+	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -118,11 +131,7 @@ public class Disciplinas {
 		return Objects.equals(id, other.id);
 	}
 
-	@Override
-	public String toString() {
-		return "Disciplinas [id=" + id + ", disciplinas=" + disciplinas + ", professor=" + professor + ", peso=" + peso
-				+ ", aluno=" + aluno + ", periodo=" + periodo + ", turno=" + turno + "]";
-	}
+
 }
 	
 

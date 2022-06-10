@@ -4,38 +4,37 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import cpti.faeterj.api.entity.Disciplinas;
+
 public class PeriodoDTO {
 
-	private String turno;
 	private String periodo;
-	private List<DisciplinasDTO> disciplinas = new ArrayList<>();
+	private List<GradeDto> disciplinas = new ArrayList<>();
 	
 	public PeriodoDTO() {
 	}
 	
 	
-	public PeriodoDTO(String turno, List<DisciplinasDTO> disciplinas) {
-		this.turno = turno;
-		this.disciplinas = disciplinas;
-	}
-
-	public String getTurno() {
-		return turno;
-	}
+	
 
 
-	public void setTurno(String turno) {
-		this.turno = turno;
-	}
 
-
-	public List<DisciplinasDTO> getDisciplinas() {
+	public List<GradeDto> getDisciplinas() {
 		return disciplinas;
 	}
 
-	public void setDisciplinas(List<DisciplinasDTO> disciplinas) {
+
+
+
+
+
+	public void setDisciplinas(List<GradeDto> disciplinas) {
 		this.disciplinas = disciplinas;
 	}
+
+
+
+
 
 
 	public String getPeriodo() {
@@ -48,27 +47,9 @@ public class PeriodoDTO {
 	}
 
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(disciplinas, turno);
-	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		PeriodoDTO other = (PeriodoDTO) obj;
-		return Objects.equals(disciplinas, other.disciplinas) && Objects.equals(turno, other.turno);
-	}
 
-	@Override
-	public String toString() {
-		return "PeriodoDTO [turno=" + turno + ", periodo=" + periodo + ", disciplinas=" + disciplinas + "]";
-	}
+
 }
 
 	
