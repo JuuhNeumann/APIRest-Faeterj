@@ -51,9 +51,8 @@ public class AlunoService {
 		Optional<Aluno> obj  = repo.findById(id);
 		
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! Id: " + id));
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Aluno.class.getName()));
 	}
-	
 	
 	public void UpdateObj(Aluno newObj) {
 		
