@@ -6,14 +6,12 @@ public class DisciplinasDTO {
 	
 	private String nome;
 	
-	
 	public DisciplinasDTO() {
 	}
 
 	public DisciplinasDTO(String nome) {
 		this.nome = nome;
 	}
-	
 
 	public String getNome() {
 		return nome;

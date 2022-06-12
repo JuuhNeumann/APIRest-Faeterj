@@ -2,21 +2,16 @@ package cpti.faeterj.api.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cpti.faeterj.api.dto.DisciplinasDTO;
 import cpti.faeterj.api.dto.GradeDto;
 import cpti.faeterj.api.dto.PeriodoDTO;
 import cpti.faeterj.api.entity.Disciplinas;
 import cpti.faeterj.api.entity.Periodo;
 import cpti.faeterj.api.entity.service.repository.DisciplinasRepository;
 import cpti.faeterj.api.entity.service.repository.PeriodoRepository;
-import cpti.faeterj.api.exception.ObjectNotFoundException;
 
 @Service
 public class PeriodoService {
@@ -26,7 +21,7 @@ public class PeriodoService {
 	PeriodoRepository repo;
 	@Autowired
 	DisciplinasRepository repodisciplina;
-<<<<<<< HEAD
+
 	
 	public Periodo InserirObj(Periodo obj) {
 		obj = repo.save(obj);
@@ -34,16 +29,9 @@ public class PeriodoService {
 		return obj;
 	}
 	
-	public List<Periodo> findAllObj() {
-		return repo.findAll();
-	}
-	
 	public void DeleteObj(long id) {
-		
 		repo.deleteById(id);
 	}
-=======
->>>>>>> eb29faa812b6c5d5389e6caa89f918be61ae5e7f
 
 	public List<PeriodoDTO> findAllObj() {
 
@@ -75,7 +63,6 @@ public class PeriodoService {
 				periodo3.setPeriodo("terceiro");
 				gradeDTO.montarObj(disciplina);
 				periodo3.getDisciplinas().add(new GradeDto(disciplina.getId(), disciplina.getDisciplinas(), disciplina.getProfessor(), disciplina.getPeso()));
-
 				break;
 			case "quarto":
 				periodo4.setPeriodo("quarto");
@@ -87,7 +74,6 @@ public class PeriodoService {
 				gradeDTO.montarObj(disciplina);
 				periodo5.getDisciplinas().add(new GradeDto(disciplina.getId(), disciplina.getDisciplinas(), disciplina.getProfessor(), disciplina.getPeso()));
 				break;
-
 			default:
 				break;
 			}
@@ -95,27 +81,25 @@ public class PeriodoService {
 		}
 
 		if (!periodo1.getDisciplinas().isEmpty()) {
-
 			listPeriodo.add(periodo1);
 		}
 
 		if (!periodo2.getDisciplinas().isEmpty()) {
-
 			listPeriodo.add(periodo2);
 		}
+		
 		if (!periodo3.getDisciplinas().isEmpty()) {
-
 			listPeriodo.add(periodo3);
 		}
+		
 		if (!periodo4.getDisciplinas().isEmpty()) {
 			listPeriodo.add(periodo4);
 		}
+		
 		if (!periodo5.getDisciplinas().isEmpty()) {
-
 			listPeriodo.add(periodo5);
 		}
+		
 		return listPeriodo;
-
 	}
-
 }

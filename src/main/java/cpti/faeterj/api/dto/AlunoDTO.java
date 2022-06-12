@@ -12,20 +12,14 @@ public class AlunoDTO {
 	
 	public AlunoDTO() {
 	}
-	
-
 
 	public List<DisciplinasDTO> getDisciplinas() {
 		return disciplinas;
 	}
 
-
-
 	public void setDisciplinas(List<DisciplinasDTO> disciplinas) {
 		this.disciplinas = disciplinas;
 	}
-
-
 
 	public String getNome() {
 		return nome;
@@ -43,4 +37,26 @@ public class AlunoDTO {
 		this.email = email;
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(disciplinas, email, nome);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AlunoDTO other = (AlunoDTO) obj;
+		return Objects.equals(disciplinas, other.disciplinas) && Objects.equals(email, other.email)
+				&& Objects.equals(nome, other.nome);
+	}
+
+	@Override
+	public String toString() {
+		return "AlunoDTO [nome=" + nome + ", email=" + email + ", disciplinas=" + disciplinas + "]";
+	}
 }

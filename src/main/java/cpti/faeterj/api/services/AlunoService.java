@@ -36,42 +36,32 @@ public class AlunoService {
 	}
 	
 	public List<Aluno> findAllObj() {
-		
 		return repo.findAll();
-		
 	}
 	
 	public void DeleteObj(long id) {
-		
 		repo.deleteById(id);
 	}
 
 	public Aluno FindByIdObj(Long id) {
-		
 		Optional<Aluno> obj  = repo.findById(id);
-		
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id));
 	}
 	
-	
 	public void UpdateObj(Aluno newObj) {
-		
 		Aluno obj = FindByIdObj(newObj.getId());
 		obj = newObj;
 		repo.save(obj);		
 	}
 
 	public Aluno FromDTO(AlunoDTO alunodto) {
-		
 		Aluno aluno = new Aluno(alunodto.getNome(), alunodto.getEmail());
-
 		for (DisciplinasDTO x : alunodto.getDisciplinas()) {
 			Disciplinas obj = repodisciplina.findByDisciplinas(x.getNome());
 			obj.getAlunin().add(aluno);
 			aluno.getDisciplinas().add(obj);
 		}
-		
 		return aluno;
 	}
 }

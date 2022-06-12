@@ -28,7 +28,6 @@ public class Disciplinas {
 	private String turno;
 	private String periodo;
 
-	
 	@JsonIgnore
 	@ManyToMany(cascade=CascadeType.PERSIST)
 	@JoinTable(
@@ -37,10 +36,6 @@ public class Disciplinas {
 	  inverseJoinColumns = @JoinColumn(name = "course_id"))
 	private List<Aluno> alunin = new ArrayList<>();
 
-
-	
-	
-	
 	public Disciplinas() {
 	}
 	
@@ -60,8 +55,6 @@ public class Disciplinas {
 		this.periodo= periodo;
 	}
 	
-	
-
 	public String getPeriodo() {
 		return periodo;
 	}
@@ -77,8 +70,6 @@ public class Disciplinas {
 	public void setTurno(String turno) {
 		this.turno = turno;
 	}
-
-
 
 	public Long getId() {
 		return id;
@@ -117,8 +108,6 @@ public class Disciplinas {
 		return Objects.hash(id);
 	}
 
-	
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -131,7 +120,9 @@ public class Disciplinas {
 		return Objects.equals(id, other.id);
 	}
 
-
+	@Override
+	public String toString() {
+		return "Disciplinas [id=" + id + ", disciplinas=" + disciplinas + ", professor=" + professor + ", peso=" + peso
+				+ ", turno=" + turno + ", periodo=" + periodo + ", alunin=" + alunin + "]";
+	}
 }
-	
-

@@ -23,30 +23,23 @@ public class GradeMateriaService {
 	}
 	
 	public List<GradeMateria> findAllObj() {
-		
 		return repo.findAll();
-		
 	}
 	
 	public void DeleteObj(long id) {
-		
 		repo.deleteById(id);
 	}
 
 	public GradeMateria FindByIdObj(Long id) {
-		
 		Optional<GradeMateria> obj  = repo.findById(id);
-		
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id));
 	}
 	
 	
 	public void UpdateObj(GradeMateria newObj) {
-		
 		GradeMateria obj = FindByIdObj(newObj.getId());
 		obj = newObj;
 		repo.save(obj);		
 	}
-
 }

@@ -22,31 +22,23 @@ public class PostService {
 		return obj;
 	}
 	
-	public List<Post> findAllObj() {
-		
-		return repo.findAll();
-		
+	public List<Post> findAllObj() {	
+		return repo.findAll();	
 	}
 	
 	public void DeleteObj(long id) {
-		
 		repo.deleteById(id);
 	}
 
 	public Post FindByIdObj(Long id) {
-		
 		Optional<Post> obj  = repo.findById(id);
-		
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id));
 	}
 	
-	
 	public void UpdateObj(Post newObj) {
-		
 		Post obj = FindByIdObj(newObj.getId());
 		obj = newObj;
 		repo.save(obj);		
 	}
-
 }

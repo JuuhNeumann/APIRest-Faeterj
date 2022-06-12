@@ -23,30 +23,22 @@ public class InfoService {
 	}
 	
 	public List<Info> findAllObj() {
-		
 		return repo.findAll();
-		
 	}
 	
 	public void DeleteObj(long id) {
-		
 		repo.deleteById(id);
 	}
 
 	public Info FindByIdObj(Long id) {
-		
 		Optional<Info> obj  = repo.findById(id);
-		
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id));
 	}
 	
-	
 	public void UpdateObj(Info newObj) {
-		
 		Info obj = FindByIdObj(newObj.getId());
 		obj = newObj;
 		repo.save(obj);		
 	}
-
 }

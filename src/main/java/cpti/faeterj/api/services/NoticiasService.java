@@ -23,31 +23,23 @@ public class NoticiasService {
 	}
 	
 	public List<Noticias> findAllObj() {
-		
 		return repo.findAll();
-		
 	}
 	
 	public void DeleteObj(long id) {
-		
 		repo.deleteById(id);
 	}
 
 	public Noticias FindByIdObj(Long id) {
-		
 		Optional<Noticias> obj  = repo.findById(id);
-		
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id));
 	}
 	
 	
 	public void UpdateObj(Noticias newObj) {
-		
 		Noticias obj = FindByIdObj(newObj.getId());
 		obj = newObj;
 		repo.save(obj);
-		
 	}
-	
 }

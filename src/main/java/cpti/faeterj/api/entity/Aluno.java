@@ -25,13 +25,11 @@ public class Aluno {
 	}
 	
 	public Aluno(String nome, String email) {
-		super();
 		this.nome = nome;
 		this.email = email;
 	}
 	
 	public Aluno(String nome, String email, List<Disciplinas> disciplinas) {
-		super();
 		this.nome = nome;
 		this.email = email;
 		this.disciplinas = disciplinas;
@@ -90,5 +88,4 @@ public class Aluno {
 	public String toString() {
 		return "Aluno [id=" + id + ", nome=" + nome + ", email=" + email + ", disciplinas=" + disciplinas + "]";
 	}
-	
 }

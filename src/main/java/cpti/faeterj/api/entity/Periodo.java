@@ -70,4 +70,8 @@ public class Periodo {
 		return Objects.equals(id, other.id);
 	}
 
+	@Override
+	public String toString() {
+		return "Periodo [id=" + id + ", turno=" + turno + ", periodo=" + periodo + "]";
+	}
 }

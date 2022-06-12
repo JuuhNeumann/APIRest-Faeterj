@@ -46,7 +46,6 @@ public class GradeMateria {
 	public void setImgCalendario(String imgCalendario) {
 		this.imgCalendario = imgCalendario;
 	}
-	
 
 	@Override
 	public int hashCode() {
@@ -69,5 +68,4 @@ public class GradeMateria {
 	public String toString() {
 		return "GradeMateria [id=" + id + ", imgGrade=" + imgGrade + ", imgCalendario=" + imgCalendario + "]";
 	}
-
 }

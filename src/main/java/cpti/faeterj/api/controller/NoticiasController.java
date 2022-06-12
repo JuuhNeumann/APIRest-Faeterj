@@ -26,30 +26,23 @@ public class NoticiasController {
 	@Autowired
 	NoticiasService service;
 
-	
 	//Especifica que o seu metodo é um tipo de requisição get
 	@GetMapping()
 	public 	ResponseEntity<?> Noticias() {
-	
 		List<Noticias> obj = service.findAllObj();
-		
 		return ResponseEntity.ok(obj);
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<?>  ProcurarNoticiaPorId(@PathVariable Long id) {
-		
 		Noticias obj = service.FindByIdObj(id);
 		return ResponseEntity.ok(obj);
-
 	}
 
 	
 	@PostMapping()
 	public ResponseEntity<?> PublicarNotica(@RequestBody Noticias obj ) { //Vai receber uma req com um json no corpo e converte para um obj
-	
 		service.InserirObj(obj);	
-
 		//obtem o retorno da url do objeto
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
@@ -57,17 +50,13 @@ public class NoticiasController {
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> DeletarNoticia(@PathVariable Long id  ) {
-		
 			service.DeleteObj(id);
 			return ResponseEntity.noContent().build();
 	}
 	
 	@PutMapping("/{id}")
 	public void AtualizarNoticia(@PathVariable Long id, @RequestBody Noticias obj) {
-		
 		obj.setId(id);
 		service.UpdateObj(obj);
-		
 	}
-	
 }

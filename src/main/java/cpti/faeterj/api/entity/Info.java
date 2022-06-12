@@ -32,7 +32,6 @@ public class Info {
 		this.endereco = endereco;
 		this.email = email;
 	}
-	
 
 	public Long getId() {
 		return id;
@@ -112,5 +111,4 @@ public class Info {
 		return "Info [id=" + id + ", tel=" + tel + ", imgLogo=" + imgLogo + ", insta=" + insta + ", face=" + face
 				+ ", endereco=" + endereco + ", email=" + email + "]";
 	}
-
 }
