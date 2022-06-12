@@ -54,13 +54,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	//aa
 
 	@Bean
-	CorsConfigurationSource corsConfigurationSource() {
-		CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
-		configuration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "OPTIONS","Authorization"));
-		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", configuration);
-	 
-		return source;
+	public CorsConfigurationSource corsConfigurationSource() {
+	    final CorsConfiguration config = new CorsConfiguration();
+
+	    config.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+	    config.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS", "DELETE", "PUT", "PATCH"));
+	    config.setAllowCredentials(true);
+	    config.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
+
+	    final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+	    source.registerCorsConfiguration("/**", config);
+
+	    return source;
 	}
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
