@@ -87,9 +87,6 @@ public class AlunoService {
 
 	}
 
-	
-	
-	
 	public Aluno update(Aluno obj) {
 		Aluno aluno = buscar(obj.getId());
 
