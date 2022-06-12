@@ -70,7 +70,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
 		private String json() {
 			long date = new Date().getTime();
-			return "{\"timestamp\": " + date + ", " + "\"status\": 401, " + "\"error\": \"Não autorizado\", "
+			return "{\"timestamp\": " + date + ", " + "\"status\": 401, " + "\"error\": \"Aluno não autorizado\", "
 					+ "\"message\": \"Email ou senha inválidos\", " + "\"path\": \"/login\"}";
 		}
 	}

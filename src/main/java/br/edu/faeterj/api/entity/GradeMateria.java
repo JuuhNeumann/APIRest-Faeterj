@@ -1,5 +1,6 @@
 package br.edu.faeterj.api.entity;
 
+import java.net.URI;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -13,16 +14,19 @@ public class GradeMateria {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // auto incrementavel
 	private Long id;
-	private String imgGrade;
-	private String imgCalendario;
+
+	private URI img; 
 
 	public GradeMateria() {
 	}
 
-	public GradeMateria(String imgGrade, String imgCalendario) {
-		this.imgGrade = imgGrade;
-		this.setImgCalendario(imgCalendario);
+	
+	
+	public GradeMateria(URI img) {
+		this.img = img;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -32,42 +36,16 @@ public class GradeMateria {
 		this.id = id;
 	}
 
-	public String getImgGrade() {
-		return imgGrade;
+	public URI getImg() {
+		return img;
 	}
 
-	public void setImgGrade(String imgGrade) {
-		this.imgGrade = imgGrade;
+	public void setImg(URI img) {
+		this.img = img;
 	}
 
-	public String getImgCalendario() {
-		return imgCalendario;
-	}
-
-	public void setImgCalendario(String imgCalendario) {
-		this.imgCalendario = imgCalendario;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		GradeMateria other = (GradeMateria) obj;
-		return Objects.equals(id, other.id);
-	}
-
-	@Override
-	public String toString() {
-		return "GradeMateria [id=" + id + ", imgGrade=" + imgGrade + ", imgCalendario=" + imgCalendario + "]";
-	}
+	
+	
+	
 
 }

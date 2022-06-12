@@ -1,4 +1,4 @@
-package br.edu.faeterj.api.exception;
+package br.edu.faeterj.api.services.exceptions;
 
 public class EnderecoNotFoundException extends Exception {
 

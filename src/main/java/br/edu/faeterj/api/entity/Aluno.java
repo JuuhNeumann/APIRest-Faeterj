@@ -33,14 +33,12 @@ public class Aluno implements Serializable {
 	@Column(unique = true)
 	private String email;
 	private String senha;
-	@JsonFormat(pattern = "dd/MM/yyyy")
-	private Date data_nasc;
 	private String urlFotoPerfil;
 
 	@ManyToMany(mappedBy = "alunin")
 	private List<Disciplinas> disciplinas = new ArrayList<>();
 
-	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
 
 	// coleção que nao aceita repetiçoes
@@ -90,13 +88,7 @@ public class Aluno implements Serializable {
 		this.senha = senha;
 	}
 
-	public Date getData_nasc() {
-		return data_nasc;
-	}
 
-	public void setData_nasc(Date data_nasc) {
-		this.data_nasc = data_nasc;
-	}
 
 	public String getUrlFotoPerfil() {
 		return urlFotoPerfil;

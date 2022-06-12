@@ -28,8 +28,8 @@ public class Endereco implements Serializable {
 
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "id_cliente")
-	private Aluno cliente;
+	@JoinColumn(name = "id_aluno")
+	private Aluno aluno;
 
 	public Endereco() {
 
@@ -44,7 +44,7 @@ public class Endereco implements Serializable {
 		this.bairro = bairro;
 		this.cep = cep;
 		this.numero = numero;
-		this.cliente = cliente;
+		this.aluno = cliente;
 		this.cidade = cidade;
 	}
 
@@ -97,11 +97,11 @@ public class Endereco implements Serializable {
 	}
 
 	public Aluno getCliente() {
-		return cliente;
+		return aluno;
 	}
 
 	public void setCliente(Aluno cliente) {
-		this.cliente = cliente;
+		this.aluno = cliente;
 	}
 
 	@Override

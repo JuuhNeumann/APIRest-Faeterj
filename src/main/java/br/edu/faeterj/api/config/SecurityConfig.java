@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	};
 
 	private static final String[] PUBLIC_MATCHER_GET = { "/swagger **", "/produtos/**", "/disciplina/**", "/aluno/**",
-			"/gradeMateria/**","/info/**","/periodo/**","/noticias/**","/post/**"};
+			"/gradeMateria/**","/info/**","/periodo/**","/noticias/**","/post/**,"};
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {

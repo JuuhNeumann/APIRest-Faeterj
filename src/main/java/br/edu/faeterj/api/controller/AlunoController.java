@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -69,17 +70,29 @@ public class AlunoController {
 		// retorna o uri eo codigo http
 		return ResponseEntity.created(uri).build();
 	}
+	
+	
+	@ApiOperation(value = "Busca por email")
+	@GetMapping(value = "/email")
+	public ResponseEntity<?> email(@RequestParam(value = "value") String email) {
+		Aluno obj = service.findByEmail(email);
+		return ResponseEntity.ok(obj);
 
-	/*
-	 * @ApiOperation(value = "Atualiza Cliente")
-	 * 
-	 * @PutMapping("/{id}") public ResponseEntity<Aluno>
-	 * update(@Validated @RequestBody ClienteDTO objDto, @PathVariable Long id) {
-	 * 
-	 * Aluno obj = service.fromDTO(objDto); obj.setId(id); service.update(obj);
-	 * 
-	 * return ResponseEntity.noContent().build(); }
-	 */
+	}
+
+
+	
+	  @ApiOperation(value = "Atualiza Aluno")
+	  
+	  @PutMapping("/{id}")
+	  public ResponseEntity<Aluno>update(@Valid @RequestBody AlunoDTO objDto, @PathVariable Long id) {
+	  
+	  Aluno obj = service.fromDTO(objDto);
+	  obj.setId(id); 
+	  service.update(obj);
+	 
+	  return ResponseEntity.noContent().build(); }
+	 
 
 	@ApiOperation(value = "Retorna a quantidade de Alunos cadastrados")
 	@GetMapping("/count")
@@ -88,10 +101,10 @@ public class AlunoController {
 		return ResponseEntity.ok(service.count());
 	}
 
-	@ApiOperation(value = "Adiciona uma Foto de perfil( Amazon S3 bucket )")
-	@PostMapping(value = "/imagem")
-	public ResponseEntity<?> foto(@RequestParam(name = "file") MultipartFile file) {
-		URI uri = service.fotoProduto(file);
+	@ApiOperation(value = "Adiciona imagens no servidor Amazon S3(bucket privado)")
+	@PostMapping(value = "/imagem/{email}")
+	public ResponseEntity<?> foto(@RequestParam(name = "file") MultipartFile file, @PathVariable String email) {
+		URI uri = service.FotoPerfil(file, email);
 		// retorna o uri eo codigo http
 		return ResponseEntity.created(uri).build();
 

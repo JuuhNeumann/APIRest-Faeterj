@@ -54,6 +54,12 @@ public class AlunoService {
 	public List<Aluno> findAll() {
 		return repo.findAll();
 	}
+	
+	public Aluno findByEmail(String email) {
+		return repo.findByEmail(email);
+	}
+	
+	
 
 	public Aluno buscar(Long id) {
 		Optional<Aluno> obj = repo.findById(id);
@@ -75,24 +81,27 @@ public class AlunoService {
 		try {
 			repo.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possivel excluir porque há pedidos relacionados ");
+			throw new DataIntegrityException("Não é possivel excluir porque há itens relacionados ");
 
 		}
 
 	}
 
+	
+	
+	
 	public Aluno update(Aluno obj) {
-		Aluno novoObj = buscar(obj.getId());
+		Aluno aluno = buscar(obj.getId());
 
 		// atualiza somente os campos nome e-email
-		upddateData(novoObj, obj);
+		upddateData(aluno, obj);
 
-		return repo.save(novoObj);
+		return repo.save(aluno);
 	}
 
-	private void upddateData(Aluno novoObj, Aluno obj) {
-		novoObj.setNome(obj.getNome());
-		novoObj.setEmail(obj.getEmail());
+	private void upddateData(Aluno aluno, Aluno obj) {
+		aluno.setNome(obj.getNome());
+		aluno.setEmail(obj.getEmail());
 
 	}
 
@@ -114,8 +123,9 @@ public class AlunoService {
 
 	public Aluno fromDTO(NewAlunoDTO objDto) {
 
-		Aluno aluno = new Aluno(objDto.getNome(), objDto.getEmail(), objDto.getSenha());
-
+		Aluno aluno = new Aluno(objDto.getNome(), objDto.getEmail(), pe.encode( objDto.getSenha())  );
+	
+		
 		Endereco endereco = new Endereco(null, objDto.getRua(), objDto.getComplemento(), objDto.getBairro(),
 				objDto.getCep(), objDto.getNumero(), aluno, objDto.getCidade());
 
@@ -125,28 +135,36 @@ public class AlunoService {
 		// Percorrendo nosso Array de disciplinas
 		for (DisciplinasDTO x : objDto.getDisciplinas()) {
 			Disciplinas obj = repoDisciplinas.findByDisciplinas(x.getNome());
+			
 			obj.getAlunin().add(aluno);
 			aluno.getDisciplinas().add(obj);
 		}
 
 		return aluno;
 	}
+	
+	public Aluno fromDTO(AlunoDTO objDto) {
+
+		Aluno aluno = new Aluno(objDto.getNome(), objDto.getEmail(),null);
+		
+
+		return aluno;
+	}
+	
+	
+	
+	
 
 	public Long count() {
 		return repo.count();
 	}
 
-	public URI fotoProduto(MultipartFile multi) {
-
-		UserSS user = UserService.authenticated();
-		if (user == null)
-			throw new AuthorizationException("Acesso negado!");
-
-		URI uri = s3Service.uploadFile(multi);
-		Aluno cli = buscar(user.getId());
-		cli.setUrlFotoPerfil(uri.toString());
-
-		repo.save(cli);
+	public URI FotoPerfil(MultipartFile multi, String email) {
+		
+		Aluno aluno =findByEmail(email);
+	    URI uri = s3Service.uploadFile(multi);
+		aluno.setUrlFotoPerfil(uri.toString());
+		repo.save(aluno);
 
 		return uri;
 
