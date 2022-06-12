@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,24 +36,8 @@ public class WebSecurityController {
 	}
 	// aa
 
-	@ApiOperation(value = "Busca cliente por Cidade(precisa estar autenticado)")
 
-	@GetMapping("/{cidade}")
-	public ResponseEntity<List<Aluno>> findCidade(@PathVariable String cidade) {
 
-		List<Endereco> end = new ArrayList();
-		end = enderecoService.findCidade(cidade);
-
-		List<Aluno> cli = new ArrayList<Aluno>();
-
-		for (Endereco x : end) {
-
-			cli.add(x.getCliente());
-		}
-
-		return ResponseEntity.ok(cli);
-
-	}
 
 	@ApiOperation(value = "Retorna uma lista com todos os endereços cadastrados(preicsa estar autenticado")
 	@GetMapping("/endereco")
