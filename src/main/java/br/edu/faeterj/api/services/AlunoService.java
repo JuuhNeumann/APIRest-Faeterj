@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import br.edu.faeterj.api.dto.AlunoDTO;
 import br.edu.faeterj.api.dto.DisciplinasDTO;
+import br.edu.faeterj.api.dto.ListDisciplinasDTO;
 import br.edu.faeterj.api.dto.NewAlunoDTO;
 import br.edu.faeterj.api.entity.Aluno;
 import br.edu.faeterj.api.entity.Disciplinas;
@@ -22,8 +23,6 @@ import br.edu.faeterj.api.entity.Endereco;
 import br.edu.faeterj.api.repositories.AlunoRepository;
 import br.edu.faeterj.api.repositories.DisciplinasRepository;
 import br.edu.faeterj.api.repositories.EnderecoRepository;
-import br.edu.faeterj.api.security.UserSS;
-import br.edu.faeterj.api.services.exceptions.AuthorizationException;
 import br.edu.faeterj.api.services.exceptions.DataIntegrityException;
 import br.edu.faeterj.api.services.exceptions.ObjectNotFoundException;
 
@@ -165,6 +164,20 @@ public class AlunoService {
 
 		return uri;
 
+	}
+
+	@Transactional
+	public Aluno inserirDisciplina(ListDisciplinasDTO disciplinas, Long id) {
+		Aluno aluno=buscar(id);
+		
+		for (DisciplinasDTO x : disciplinas.getDisciplinas()) {
+			Disciplinas obj = repoDisciplinas.findByDisciplinas(x.getNome());
+			obj.getAlunin().add(aluno);
+			aluno.getDisciplinas().add(obj);
+		}
+		repoDisciplinas.saveAll(aluno.getDisciplinas());
+		return repo.save(aluno);
+		
 	}
 
 }

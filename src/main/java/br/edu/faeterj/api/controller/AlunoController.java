@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.edu.faeterj.api.dto.AlunoDTO;
+import br.edu.faeterj.api.dto.ListDisciplinasDTO;
 import br.edu.faeterj.api.dto.NewAlunoDTO;
 import br.edu.faeterj.api.entity.Aluno;
 import br.edu.faeterj.api.services.AlunoService;
@@ -70,6 +71,21 @@ public class AlunoController {
 		// retorna o uri eo codigo http
 		return ResponseEntity.created(uri).build();
 	}
+	
+
+	@ApiOperation(value = "Insere uma nova disciplina para o aluno")
+	@PostMapping(value = ("/{id}"))
+	public ResponseEntity<Void> addDisciplina(@PathVariable Long id ,@RequestBody ListDisciplinasDTO objDto) {
+		
+		Aluno obj = service.inserirDisciplina(objDto,id);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+
+		// retorna o uri eo codigo http
+		return ResponseEntity.created(uri).build();
+	}
+	
+	
+	
 	
 	
 	@ApiOperation(value = "Busca por email")
