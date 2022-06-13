@@ -29,7 +29,7 @@ public class Disciplinas {
 
 	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.PERSIST)
-	@JoinTable(name = "course_like", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "course_id"))
+	@JoinTable(name = "aluno_disciplina", joinColumns = @JoinColumn(name = "id_aluno"), inverseJoinColumns = @JoinColumn(name = "id_disciplina"))
 	private List<Aluno> alunin = new ArrayList<>();
 
 	public Disciplinas() {

@@ -68,7 +68,6 @@ public class AlunoService {
 
 	@Transactional
 	public Aluno insert(Aluno obj) {
-		obj.setId(null);
 		obj = repo.save(obj);
 		enderecoRepository.saveAll(obj.getEnderecos());
 		repoDisciplinas.saveAll(obj.getDisciplinas());
